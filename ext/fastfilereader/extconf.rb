@@ -1,12 +1,12 @@
 require 'mkmf'
 
 CONFIG["CC"] = "cc -m64"
-CONFIG["CXX"] = "c++ -m64"
-CONFIG["CFLAGS"] = "-m64 -xO3 -xbuiltin=%all -xinline=auto -xprefetch=auto -xdepend -fPIC"
+CONFIG["CXX"] = "CC -m64"
+CONFIG["CFLAGS"] = "-m64 -xO3 -xbuiltin=%all -xinline=auto -xprefetch=auto -xdepend -KPIC"
 CONFIG["LDFLAGS"] = "-m64 -L. -L/usr/sfw/lib -R/usr/sfw/lib"
 CONFIG["CPPFLAGS"] = "-I/usr/sfw/include -I/usr/include"
 CONFIG["CPP"] = "cc -E"
-CONFIG["CCDLFLAGS"] = "-fPIC"
+CONFIG["CCDLFLAGS"] = "-KPIC"
 
 def check_libs libs = [], fatal = false
   libs.all? { |lib| have_library(lib) || (abort("could not find library: #{lib}") if fatal) }
