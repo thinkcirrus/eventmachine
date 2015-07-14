@@ -4,7 +4,7 @@ require 'mkmf'
 CONFIG["CC"] = "cc -m64"
 CONFIG["CXX"] = "CC -m64"
 CONFIG["CFLAGS"] = "-m64 -xO3 -xbuiltin=%all -xinline=auto -xprefetch=auto -xdepend -KPIC"
-CONFIG["LDFLAGS"] = "-m64 -L. -L/usr/sfw/lib -R/usr/sfw/lib"
+CONFIG["LDFLAGS"] = "-m64 -L. -L/usr/sfw/lib -R/usr/sfw/lib -KPIC"
 CONFIG["CPPFLAGS"] = "-I/usr/sfw/include -I/usr/include"
 CONFIG["CPP"] = "cc -E"
 CONFIG["CCDLFLAGS"] = "-KPIC"
@@ -135,7 +135,7 @@ when /solaris/
     add_define 'CC_SUNWspro'
     $preload = ["\nCXX = CC"] # hack a CXX= line into the makefile
     $CFLAGS = CONFIG['CFLAGS'] = "-KPIC"
-    CONFIG['CCDLFLAGS'] = "-fPIC"
+    CONFIG['CCDLFLAGS'] = "-KPIC"
     CONFIG['LDSHARED'] = "$(CXX) -G -KPIC -lCstd"
   else
     # GNU CHAIN
